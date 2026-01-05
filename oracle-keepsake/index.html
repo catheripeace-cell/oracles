@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>The Oracle's Keepsake</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="C:\oracle-keepsake\style.css" />
+    <style>
+        /* Router pages */
+        .route {
+            display: none;
+        }
+
+            .route.active {
+                display: block;
+            }
+
+        /* Language switch styling (newspaper vibe) */
+        .lang-switch {
+            display: inline-flex;
+            gap: 0.4rem;
+            align-items: center;
+            border: 1px solid var(--border);
+            background: #efe2cd;
+            padding: 0.25rem 0.4rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+        }
+
+            .lang-switch button {
+                border: 1px solid transparent;
+                background: transparent;
+                cursor: pointer;
+                padding: 0.15rem 0.45rem;
+                border-radius: 999px;
+                font: inherit;
+                letter-spacing: inherit;
+            }
+
+                .lang-switch button.active {
+                    border-color: var(--ink);
+                    background: #f5e6d6;
+                }
+        img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain; /* Ensures the whole image is visible */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="page-inner">
+
+            <header>
+                <div>
+                    <div class="site-title">The Oracle’s Keepsake</div>
+                    <div class="site-subtitle" data-i18n="SITE_SUBTITLE">Curated Heirloom Dolls &amp; Historical Curiosities</div>
+                </div>
+
+                <nav id="mainNav">
+                    <a href="#home" data-route="home" data-i18n="NAV_HOME">Home</a>
+                    <a href="#archive" data-route="archive" data-i18n="NAV_ARCHIVE">The Grand Archive</a>
+                    <a href="#chronicle" data-route="chronicle" data-i18n="NAV_CHRONICLE">The Chronicle</a>
+                    <a href="#society" data-route="society" data-i18n="NAV_SOCIETY">The Society Portal</a>
+                    <a href="#gifting" data-route="gifting" data-i18n="NAV_GIFTING">The Gift of History</a>
+                    <a href="#" class="caretaker-login" data-i18n="NAV_LOGIN">Caretaker’s Login</a>
+                </nav>
+            </header>
+
+            <div class="top-strip">
+                <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+                    <div class="sound-toggle" id="soundToggle">
+                        <span class="sound-indicator" id="soundIndicator"></span>
+                        <span><span data-i18n="SOUND">Atmospheric Sound:</span> <strong id="soundLabel">Off</strong></span>
+                    </div>
+
+                    <div class="lang-switch" aria-label="Language switch">
+                        <span style="opacity:0.75;">LANG</span>
+                        <button id="langEN" type="button" class="active">EN</button>
+                        <button id="langZH" type="button">繁中</button>
+                    </div>
+                </div>
+
+                <div class="hero-link">
+                    <span data-i18n="FEATURED_ENTRY">Featured entry:</span>
+                    <a href="#tanaka" data-route="tanaka"><em>Tanaka Fumiko, 1930s Modular Doll</em></a>
+                    <span data-i18n="FEATURED_TAIL">— view in The Grand Archive.</span>
+                </div>
+            </div>
+
+            <!-- ROUTE: HOME -->
+            <section class="route" id="route-home" data-route="home">
+                <section class="hero">
+                    <div class="hero-main">
+                        <div class="hero-kicker" data-i18n="HOME_KICKER">A Periodical for Keepers of Small Histories</div>
+                        <h1 data-i18n="HOME_H1">Welcome to the Oracle’s Keepsake</h1>
+                        <p class="small-copy" data-i18n="HOME_P1"></p>
+                        <div class="hero-cta-row">
+                            <a class="btn" href="#archive" data-route="archive" data-i18n="HOME_BTN_ARCHIVE">Enter The Grand Archive</a>
+                            <a class="btn btn-secondary" href="#tanaka" data-route="tanaka" data-i18n="HOME_BTN_CARETAKER">Become a Caretaker »</a>
+                        </div>
+                    </div>
+
+                    <aside class="hero-side">
+                        <h2 data-i18n="TODAY_H2">Today’s Edition</h2>
+                        <p class="pill" data-i18n="TODAY_PILL">New Arrival Alchemy</p>
+                        <p class="small-copy" data-i18n="TODAY_P1"></p>
+                        <p class="small-copy" data-i18n="TODAY_P2"></p>
+                    </aside>
+                </section>
+
+                <section class="columns columns-3">
+                    <article>
+                        <div class="section-title" data-i18n="COL1_TITLE"></div>
+                        <p class="small-copy" data-i18n="COL1_P"></p>
+
+                        <div class="card">
+                            <h3 data-i18n="TIMELINE_H3"></h3>
+                            <p class="small-copy" data-i18n="TIMELINE_P"></p>
+                            <div class="timeline-strip">
+                                <span data-i18n="ERA1"></span>
+                                <span data-i18n="ERA2"></span>
+                                <span data-i18n="ERA3"></span>
+                                <span data-i18n="ERA4"></span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3 data-i18n="ATELIER_H3"></h3>
+                            <p class="small-copy" data-i18n="ATELIER_P"></p>
+                            <div class="live-counter">
+                                <span data-i18n="LIVE_INV">Live Inventory:</span>
+                                <span class="counter-pill" id="atelierCounter">No. 03 / 25</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="section-title" data-i18n="COL2_TITLE"></div>
+                        <div class="card">
+                            <h3 data-i18n="COL2_A"></h3>
+                            <p class="small-copy" data-i18n="COL2_A_P"></p>
+                        </div>
+                        <div class="card">
+                            <h3 data-i18n="COL2_B"></h3>
+                            <p class="small-copy" data-i18n="COL2_B_P"></p>
+                        </div>
+                        <div class="card">
+                            <h3 data-i18n="COL2_C"></h3>
+                            <p class="small-copy" data-i18n="COL2_C_P"></p>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="section-title" data-i18n="COL3_TITLE"></div>
+                        <div class="card">
+                            <h3 data-i18n="COL3_A"></h3>
+                            <p class="small-copy" data-i18n="COL3_A_P"></p>
+                        </div>
+                        <div class="card">
+                            <h3 data-i18n="COL3_B"></h3>
+                            <p class="small-copy" data-i18n="COL3_B_P"></p>
+                        </div>
+                        <div class="card">
+                            <h3 data-i18n="COL3_C"></h3>
+                            <p class="small-copy" data-i18n="COL3_C_P"></p>
+                        </div>
+                    </article>
+                </section>
+            </section>
+
+            <!-- ROUTE: ARCHIVE -->
+            <section class="route" id="route-archive" data-route="archive">
+                <section class="hero">
+                    <div class="hero-main">
+                        <div class="hero-kicker" data-i18n="ARCHIVE_KICKER"></div>
+                        <h1 data-i18n="ARCHIVE_H1"></h1>
+                        <p class="small-copy" data-i18n="ARCHIVE_P"></p>
+                        <div class="hero-cta-row">
+                            <a class="btn" href="#tanaka" data-route="tanaka" data-i18n="ARCHIVE_BTN_TANAKA"></a>
+                            <a class="btn btn-secondary" href="#gifting" data-route="gifting" data-i18n="ARCHIVE_BTN_GIFT"></a>
+                        </div>
+                    </div>
+                    <aside class="hero-side">
+                        <h2 data-i18n="ARCHIVE_SIDE_H2"></h2>
+                        <p class="small-copy" data-i18n="ARCHIVE_SIDE_P"></p>
+                        <div class="timeline-strip">
+                            <span data-i18n="ALL"></span><span>1890s</span><span>Taishō</span><span>1930s</span><span>Postwar</span>
+                        </div>
+                    </aside>
+                </section>
+
+                <div class="section-title" data-i18n="ARCHIVE_SECTION"></div>
+                <div class="grid-products">
+                    <article class="product-card">
+                        <img src="C:\oracle-keepsake\images\tanaka_fumiko\ChatGPT Image Dec 16, 2025, 02_49_52 PM.png" />
+                        <h3 data-i18n="P_TANAKA_TITLE"></h3>
+                        <p class="small-copy" data-i18n="P_TANAKA_P"></p>
+                        <a class="btn" href="#tanaka" data-route="tanaka" data-i18n="P_TANAKA_BTN"></a>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="C:\oracle-keepsake\images\tanaka_fumiko\ChatGPT Image Dec 16, 2025, 03_15_10 PM.png" />
+                        <h3 data-i18n="P_VISIONS_TITLE"></h3>
+                        <p class="small-copy" data-i18n="P_VISIONS_P"></p>
+                        <a class="btn btn-secondary" href="#chronicle" data-route="chronicle" data-i18n="P_VISIONS_BTN"></a>
+                    </article>
+
+                    <article class="product-card">
+                        <img src="C:\oracle-keepsake\images\tanaka_fumiko\ChatGPT Image Dec 20, 2025, 10_05_55 PM.png" />
+                        <h3 data-i18n="P_BUNDLE_TITLE"></h3>
+                        <p class="small-copy" data-i18n="P_BUNDLE_P"></p>
+                        <a class="btn btn-secondary" href="#gifting" data-route="gifting" data-i18n="P_BUNDLE_BTN"></a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ROUTE: TANAKA -->
+            <section class="route" id="route-tanaka" data-route="tanaka">
+                <section class="hero">
+                    <div class="hero-main">
+                        <div class="hero-kicker" data-i18n="TANAKA_KICKER"></div>
+                        <h1 data-i18n="TANAKA_H1"></h1>
+                        <p class="small-copy" data-i18n="TANAKA_P"></p>
+                        <div class="hero-cta-row">
+                            <a class="btn" href="#" data-i18n="TANAKA_BTN1"></a>
+                            <a class="btn btn-secondary" href="#gifting" data-route="gifting" data-i18n="TANAKA_BTN2"></a>
+                        </div>
+                    </div>
+
+                    <aside class="hero-side">
+                        <h2 data-i18n="TANAKA_SIDE_H2"></h2>
+                        <p class="small-copy" data-i18n="TANAKA_FEAT"></p>
+                    </aside>
+                </section>
+
+                <div class="columns columns-2">
+                    <article>
+                        <div class="section-title" data-i18n="VIEWER_TITLE"></div>
+                        <div class="card">
+                            <p class="small-copy" data-i18n="VIEWER_P"></p>
+                            <img src="C:\oracle-keepsake\images\tanaka_fumiko\tanaka_fumiko_3d_360.png"
+                                 alt="tanaka_fumiko_3d_360"
+                                 style="width:100%; border:1px solid var(--border); background:#e1d2bd;">
+                        </div>
+                        <div class="section-title" data-i18n="CONFIG_TITLE"></div>
+                        <div class="card">
+                            <p class="small-copy" data-i18n="CONFIG_P"></p>
+                            <form class="small-copy">
+                                <label>
+                                    <span data-i18n="CONFIG_HAIR"></span><br />
+                                    <select style="width:100%;margin:0.3rem 0;">
+                                        <option>Bob</option>
+                                        <option>Single Braid</option>
+                                        <option>Dual Plaits</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span data-i18n="CONFIG_OUTFIT"></span><br />
+                                    <select style="width:100%;margin:0.3rem 0;">
+                                        <option>Hakama</option>
+                                        <option>Kimono</option>
+                                    </select>
+                                </label>
+                                <button type="button" class="btn btn-secondary" data-i18n="PREVIEW"></button>
+                            </form>
+                        </div>
+                    </article>
+
+                    <aside>
+                        <div class="section-title" data-i18n="TRUNK_TITLE"></div>
+                        <div class="card">
+                            <p class="small-copy" data-i18n="TRUNK_P"></p>
+                        </div>
+
+                        <div class="section-title" data-i18n="BOX_TITLE"></div>
+                        <div class="card">
+                            <p class="small-copy" data-i18n="BOX_P"></p>
+                            <img src="C:\oracle-keepsake\images\tanaka_fumiko\keepsake_box_tanaka.png"
+                                 alt="Vintage-inspired keepsake box"
+                                 style="width:100%; border:1px solid var(--border); background:#e1d2bd;">
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Enhanced carousel -->
+                <div style="margin-top:1.5rem;">
+                    <div class="section-title" data-i18n="STYLE_VARIATIONS">Style Variations</div>
+
+                    <div class="carousel">
+                        <div class="carousel-track">
+
+                            <div class="carousel-slide active">
+                                <img src="C:\oracle-keepsake\images\tanaka_fumiko\tanaka_fumiko_bob.png" >
+                                <div class="annotation" data-i18n="ANNOTATION_1"></div>
+                                <div class="carousel-caption"
+                                     data-i18n="CAROUSEL_1"
+                                     data-lore-title="LORE_1_T"
+                                     data-lore-text="LORE_1_P"></div>
+                            </div>
+
+                            <div class="carousel-slide">
+                                <img src="C:\oracle-keepsake\images\tanaka_fumiko\tanaka_fumiko_kimono.png" alt="">
+                                <div class="annotation" data-i18n="ANNOTATION_2"></div>
+                                <div class="carousel-caption"
+                                     data-i18n="CAROUSEL_2"
+                                     data-lore-title="LORE_2_T"
+                                     data-lore-text="LORE_2_P"></div>
+                            </div>
+
+                            <div class="carousel-slide">
+                                <img src="C:\oracle-keepsake\images\tanaka_fumiko\ChatGPT Image Dec 16, 2025, 02_03_02 PM.png" alt="">
+                                <div class="annotation" data-i18n="ANNOTATION_3"></div>
+                                <div class="carousel-caption"
+                                     data-i18n="CAROUSEL_3"
+                                     data-lore-title="LORE_3_T"
+                                     data-lore-text="LORE_3_P"></div>
+                            </div>
+
+                            <div class="carousel-slide">
+                                <img src="C:\oracle-keepsake\images\tanaka_fumiko\keepsake_box_tanaka.png" alt="">
+                                <div class="annotation" data-i18n="ANNOTATION_4"></div>
+                                <div class="carousel-caption"
+                                     data-i18n="CAROUSEL_4"
+                                     data-lore-title="LORE_4_T"
+                                     data-lore-text="LORE_4_P"></div>
+                            </div>
+
+                        </div>
+
+                        <button class="carousel-btn prev">Prev</button>
+                        <button class="carousel-btn next">Next</button>
+                    </div>
+
+                    <div class="carousel-dots">
+                        <div class="carousel-dot active"></div>
+                        <div class="carousel-dot"></div>
+                        <div class="carousel-dot"></div>
+                        <div class="carousel-dot"></div>
+                    </div>
+
+                    <div class="archival-toggle" data-i18n="ARCHIVAL_TOGGLE">Toggle archival photograph</div>
+                </div>
+            </section>
+
+            <!-- ROUTE: CHRONICLE -->
+            <section class="route" id="route-chronicle" data-route="chronicle">
+                <section class="hero">
+                    <div class="hero-main">
+                        <div class="hero-kicker" data-i18n="CHRONICLE_KICKER"></div>
+                        <h1 data-i18n="CHRONICLE_H1"></h1>
+                        <p class="small-copy" data-i18n="CHRONICLE_P"></p>
+                    </div>
+                    <aside class="hero-side">
+                        <h2 data-i18n="NEWS_H2"></h2>
+                        <p class="small-copy" data-i18n="NEWS_P"></p>
+                        <form class="small-copy">
+                            <input type="email" placeholder="your.address@example.com" style="width:100%;margin:0.3rem 0;padding:0.3rem;">
+                            <button type="button" class="btn btn-secondary" data-i18n="SUBSCRIBE"></button>
+                        </form>
+                    </aside>
+                </section>
+
+                <div class="columns columns-2">
+                    <article>
+                        <div class="section-title" data-i18n="LATEST"></div>
+                        <div class="card"><h3 data-i18n="C1"></h3><p class="small-copy" data-i18n="C1P"></p></div>
+                        <div class="card"><h3 data-i18n="C2"></h3><p class="small-copy" data-i18n="C2P"></p></div>
+                        <div class="card"><h3 data-i18n="C3"></h3><p class="small-copy" data-i18n="C3P"></p></div>
+                    </article>
+
+                    <aside>
+                        <div class="section-title" data-i18n="VIDEO_TITLE"></div>
+                        <div class="card">
+                            <p class="small-copy" data-i18n="VIDEO_P"></p>
+                            <div style="height:160px;border:1px solid var(--border);background:#e1d2bd;display:flex;align-items:center;justify-content:center;font-size:0.8rem;">
+                                <span data-i18n="VIDEO_PH"></span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3 data-i18n="QUIZ_TITLE"></h3>
+                            <p class="small-copy" data-i18n="QUIZ_P"></p>
+                            <button class="btn btn-secondary" type="button" data-i18n="BEGIN"></button>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- ROUTE: SOCIETY -->
+            <section class="route" id="route-society" data-route="society">
+                <section class="hero">
+                    <div class="hero-main">
+                        <div class="hero-kicker" data-i18n="SOC_KICKER"></div>
+                        <h1 data-i18n="SOC_H1"></h1>
+                        <p class="small-copy" data-i18n="SOC_P"></p>
+                    </div>
+                    <aside class="hero-side">
+                        <h2 data-i18n="SOC_SIDE_H2"></h2>
+                        <p class="small-copy" data-i18n="SOC_SIDE_P"></p>
+                        <button class="btn btn-secondary" type="button" data-i18n="ENROLL"></button>
+                    </aside>
+                </section>
+
+                <section class="columns columns-3">
+                    <article>
+                        <div class="section-title" data-i18n="UGC_TITLE"></div>
+                        <div class="card">
+                            <p class="small-copy" data-i18n="UGC_P"></p>
+                            <div style="height:140px;border:1px solid var(--border);background:#e1d2bd;display:flex;align-items:center;justify-content:center;font-size:0.8rem;">
+                                <span data-i18n="UGC_PH"></span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="section-title" data-i18n="FORUM_TITLE"></div>
+                        <div class="card"><h3 data-i18n="SALON"></h3><p class="small-copy" data-i18n="SALON_P"></p></div>
+                        <div class="card"><h3 data-i18n="PARLOR"></h3><p class="small-copy" data-i18n="PARLOR_P"></p></div>
+                    </article>
+
+                    <article>
+                        <div class="section-title" data-i18n="REG_TITLE"></div>
+                        <div class="card">
+                            <p class="small-copy" data-i18n="REG_P"></p>
+                            <form class="small-copy">
+                                <input type="text" placeholder="Doll ID (e.g., 1936-TF)" style="width:100%;margin:0.3rem 0;padding:0.3rem;">
+                                <input type="text" placeholder="Name / Title" style="width:100%;margin:0.3rem 0;padding:0.3rem;">
+                                <textarea rows="3" placeholder="Dedication" style="width:100%;margin:0.3rem 0;padding:0.3rem;"></textarea>
+                                <button type="button" class="btn btn-secondary" data-i18n="ADD"></button>
+                            </form>
+                        </div>
+                    </article>
+                </section>
+            </section>
+
+            <!-- ROUTE: GIFTING -->
+            <section class="route" id="route-gifting" data-route="gifting">
+                <section class="hero">
+                    <div class="hero-main">
+                        <div class="hero-kicker" data-i18n="GIFT_KICKER"></div>
+                        <h1 data-i18n="GIFT_H1"></h1>
+                        <p class="small-copy" data-i18n="GIFT_P"></p>
+                        <div class="hero-cta-row">
+                            <a class="btn" href="#archive" data-route="archive" data-i18n="GIFT_BTN1"></a>
+                            <a class="btn btn-secondary" href="#society" data-route="society" data-i18n="GIFT_BTN2"></a>
+                        </div>
+                    </div>
+                    <aside class="hero-side">
+                        <h2 data-i18n="GIFT_SIDE_H2"></h2>
+                        <p class="small-copy" data-i18n="GIFT_FEAT"></p>
+                    </aside>
+                </section>
+
+                <section class="columns columns-3">
+                    <article>
+                        <div class="section-title" data-i18n="VELLUM_TITLE"></div>
+                        <div class="card">
+                            <h3 data-i18n="VELLUM_H3"></h3>
+                            <form class="small-copy">
+                                <input type="email" placeholder="Recipient email" style="width:100%;margin:0.3rem 0;padding:0.3rem;">
+                                <select style="width:100%;margin:0.3rem 0;padding:0.3rem;">
+                                    <option>Birthday</option>
+                                    <option>Graduation</option>
+                                    <option>New Chapter</option>
+                                    <option>Just Because</option>
+                                </select>
+                                <textarea rows="3" placeholder="Message" style="width:100%;margin:0.3rem 0;padding:0.3rem;"></textarea>
+                                <button type="button" class="btn btn-secondary" data-i18n="PREVIEW_INV"></button>
+                            </form>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="section-title" data-i18n="CHEST_TITLE"></div>
+                        <div class="card">
+                            <h3 data-i18n="CHEST_H3"></h3>
+                            <p class="small-copy" data-i18n="CHEST_P"></p>
+                            <div style="height:150px;border:1px solid var(--border);background:#e1d2bd;display:flex;align-items:center;justify-content:center;font-size:0.8rem;">
+                                <span data-i18n="CHEST_PH"></span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3 data-i18n="BUNDLES_H3"></h3>
+                            <p class="small-copy" data-i18n="BUNDLES_P"></p>
+                            <button class="btn btn-secondary" type="button" data-i18n="VIEW_BUNDLES"></button>
+                        </div>
+                    </article>
+
+                    <article>
+                        <div class="section-title" data-i18n="RES_TITLE"></div>
+                        <div class="card">
+                            <h3 data-i18n="WISH_H3"></h3>
+                            <p class="small-copy" data-i18n="WISH_P"></p>
+                            <input type="text" placeholder="Era or Doll of Interest" style="width:100%;margin:0.3rem 0;padding:0.3rem;">
+                            <button class="btn btn-secondary" type="button" data-i18n="JOIN_WISH"></button>
+                        </div>
+                        <div class="card">
+                            <h3 data-i18n="LEGACY_H3"></h3>
+                            <p class="small-copy" data-i18n="LEGACY_P"></p>
+                            <button class="btn btn-secondary" type="button" data-i18n="LEARN"></button>
+                        </div>
+                    </article>
+                </section>
+            </section>
+
+            <footer>
+                <div>&copy; <span id="year"></span> <span data-i18n="FOOT_L"></span></div>
+                <div>
+                    <a href="#home" data-route="home" data-i18n="FOOT_A"></a> |
+                    <a href="#archive" data-route="archive" data-i18n="FOOT_B"></a> |
+                    <a href="#tanaka" data-route="tanaka" data-i18n="FOOT_C"></a>
+                </div>
+            </footer>
+
+            <!-- Lore popup (click captions) -->
+            <div class="lore-overlay" id="loreOverlay">
+                <div class="lore-box">
+                    <h3 id="loreTitle"></h3>
+                    <p id="loreText"></p>
+                    <div class="lore-close" id="loreClose" data-i18n="CLOSE">Close</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="C:\oracle-keepsake\script.js"></script>
+
+    <script>
+        // Hash router (multi-page feel in one file)
+        const routes = Array.from(document.querySelectorAll(".route"));
+        const nav = document.getElementById("mainNav");
+
+        function setActive(routeName) {
+            routes.forEach(r => r.classList.toggle("active", r.dataset.route === routeName));
+            if (nav) {
+                nav.querySelectorAll("a[data-route]").forEach(a => {
+                    a.classList.toggle("active", a.dataset.route === routeName);
+                });
+            }
+        }
+
+        function currentRoute() {
+            const hash = (location.hash || "#home").replace("#", "");
+            return hash || "home";
+        }
+
+        window.addEventListener("hashchange", () => setActive(currentRoute()));
+        setActive(currentRoute());
+    </script>
+
+</body>
+</html>
